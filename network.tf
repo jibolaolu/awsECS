@@ -16,6 +16,7 @@ resource "aws_subnet" "ECR-Private-Subnet" {
   vpc_id            = aws_vpc.ecs_vpc.id
   cidr_block        = element(var.private_subnet_cidr, count.index)
   availability_zone = element(var.az_count, count.index)
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "ECS-Private-Subnet-${count.index + 1}"
